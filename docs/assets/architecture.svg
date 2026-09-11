@@ -1,195 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="680" viewBox="0 0 900 680">
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="500" viewBox="0 0 820 500">
+  <rect width="820" height="500" fill="#f8f9fa" rx="10"/>
+
+  <text x="410" y="35" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="700" fill="#2c3e50">Fishbot 巡逻机器人 - 系统架构</text>
+
+  <!-- 第一层：应用层 -->
+  <rect x="40" y="60" width="740" height="90" rx="8" fill="#fff5f5" stroke="#e74c3c" stroke-width="2"/>
+  <text x="60" y="82" font-family="Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#c0392b">应用层</text>
+
+  <rect x="70" y="95" width="200" height="45" rx="6" fill="#e74c3c"/>
+  <text x="170" y="115" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#fff">巡逻节点</text>
+  <text x="170" y="132" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fde">导航 + 拍照 + 语音</text>
+
+  <rect x="310" y="95" width="160" height="45" rx="6" fill="#e74c3c"/>
+  <text x="390" y="115" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#fff">语音服务</text>
+  <text x="390" y="132" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fde">edge-tts 语音合成</text>
+
+  <rect x="510" y="95" width="240" height="45" rx="6" fill="#3498db"/>
+  <text x="630" y="115" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#fff">导航工具集</text>
+  <text x="630" y="132" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#d5e8f3">单点导航 / 多点导航 / 获取位姿</text>
+
+  <!-- 箭头：应用层→导航层 -->
+  <line x1="170" y1="150" x2="300" y2="190" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="390" y1="150" x2="390" y2="190" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- 第二层：SLAM + 导航层 -->
+  <rect x="40" y="190" width="740" height="90" rx="8" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <text x="60" y="212" font-family="Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#27ae60">建图与导航层</text>
+
+  <rect x="70" y="225" width="200" height="45" rx="6" fill="#27ae60"/>
+  <text x="170" y="245" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#fff">Cartographer 建图</text>
+  <text x="170" y="262" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#d5f5e3">雷达+里程计 → 地图</text>
+
+  <rect x="310" y="225" width="200" height="45" rx="6" fill="#27ae60"/>
+  <text x="410" y="245" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#fff">Nav2 自主导航</text>
+  <text x="410" y="262" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#d5f5e3">AMCL定位 + 路径规划</text>
+
+  <rect x="550" y="225" width="200" height="45" rx="6" fill="#27ae60"/>
+  <text x="650" y="245" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#fff">地图文件</text>
+  <text x="650" y="262" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#d5f5e3">room.pgm / room.yaml</text>
+
+  <!-- 箭头：导航层→驱动层 -->
+  <line x1="170" y1="280" x2="170" y2="320" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="410" y1="280" x2="410" y2="320" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="650" y1="280" x2="650" y2="320" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- 第三层：驱动层 -->
+  <rect x="40" y="320" width="740" height="80" rx="8" fill="#f5eef8" stroke="#8e44ad" stroke-width="2"/>
+  <text x="60" y="342" font-family="Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8e44ad">驱动层</text>
+
+  <rect x="60" y="355" width="130" height="38" rx="6" fill="#8e44ad"/>
+  <text x="125" y="379" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#fff">激光雷达驱动</text>
+
+  <rect x="210" y="355" width="130" height="38" rx="6" fill="#8e44ad"/>
+  <text x="275" y="379" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#fff">里程计→TF</text>
+
+  <rect x="360" y="355" width="130" height="38" rx="6" fill="#8e44ad"/>
+  <text x="425" y="379" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#fff">机器人模型</text>
+
+  <rect x="510" y="355" width="130" height="38" rx="6" fill="#8e44ad"/>
+  <text x="575" y="379" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#fff">相机驱动</text>
+
+  <rect x="660" y="355" width="100" height="38" rx="6" fill="#8e44ad"/>
+  <text x="710" y="379" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#fff">串口桥接</text>
+
+  <!-- 箭头：驱动层→硬件层 -->
+  <line x1="125" y1="400" x2="125" y2="435" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="275" y1="400" x2="275" y2="435" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="425" y1="400" x2="425" y2="435" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="575" y1="400" x2="575" y2="435" stroke="#555" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- 第四层：硬件层 -->
+  <rect x="40" y="435" width="740" height="50" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="60" y="457" font-family="Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#d68910">硬件层</text>
+
+  <text x="200" y="465" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#d68910">YDLidar</text>
+  <text x="320" y="465" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#d68910">STM32</text>
+  <text x="430" y="465" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#d68910">URDF模型</text>
+  <text x="560" y="465" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#d68910">ESP32摄像头</text>
+  <text x="690" y="465" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#d68910">扬声器</text>
+
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#f8f9fa"/>
-      <stop offset="100%" stop-color="#e9ecef"/>
-    </linearGradient>
-    <linearGradient id="navGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4a90d9"/>
-      <stop offset="100%" stop-color="#357abd"/>
-    </linearGradient>
-    <linearGradient id="patrolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e74c3c"/>
-      <stop offset="100%" stop-color="#c0392b"/>
-    </linearGradient>
-    <linearGradient id="slamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#27ae60"/>
-      <stop offset="100%" stop-color="#1e8449"/>
-    </linearGradient>
-    <linearGradient id="baseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8e44ad"/>
-      <stop offset="100%" stop-color="#6c3483"/>
-    </linearGradient>
-    <linearGradient id="hwGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f39c12"/>
-      <stop offset="100%" stop-color="#d68910"/>
-    </linearGradient>
-    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
-    </marker>
-    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#357abd"/>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"/>
     </marker>
   </defs>
-
-  <rect width="900" height="680" fill="url(#bgGrad)" rx="12"/>
-
-  <!-- Title -->
-  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#2c3e50">Fishbot Autonomous Patrol Robot - System Architecture</text>
-
-  <!-- ============ Layer 1: Hardware (bottom) ============ -->
-  <rect x="50" y="570" width="800" height="90" rx="8" fill="#fff3e0" stroke="#f39c12" stroke-width="2"/>
-  <text x="450" y="592" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#d68910">Hardware Layer</text>
-
-  <!-- YDLidar -->
-  <rect x="80" y="602" width="120" height="48" rx="6" fill="url(#hwGrad)"/>
-  <text x="140" y="623" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">YDLidar</text>
-  <text x="140" y="640" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fff">/scan</text>
-
-  <!-- ESP32 Camera -->
-  <rect x="230" y="602" width="120" height="48" rx="6" fill="url(#hwGrad)"/>
-  <text x="290" y="623" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">ESP32 Camera</text>
-  <text x="290" y="640" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fff">HTTP Stream</text>
-
-  <!-- STM32 + micro-ROS -->
-  <rect x="380" y="602" width="140" height="48" rx="6" fill="url(#hwGrad)"/>
-  <text x="450" y="623" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">STM32 (micro-ROS)</text>
-  <text x="450" y="640" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fff">/cmd_vel /odom</text>
-
-  <!-- Speaker (Audio) -->
-  <rect x="550" y="602" width="120" height="48" rx="6" fill="url(#hwGrad)"/>
-  <text x="610" y="623" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">Speaker (mpv)</text>
-  <text x="610" y="640" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fff">Audio Output</text>
-
-  <!-- Serial2WiFi -->
-  <rect x="700" y="602" width="120" height="48" rx="6" fill="url(#hwGrad)"/>
-  <text x="760" y="623" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">Serial2WiFi</text>
-  <text x="760" y="640" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fff">TCP-Serial Bridge</text>
-
-  <!-- ============ Layer 2: Bringup / Driver ============ -->
-  <rect x="50" y="430" width="800" height="120" rx="8" fill="#f5eef8" stroke="#8e44ad" stroke-width="2"/>
-  <text x="450" y="452" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#6c3483">Bringup &amp; Driver Layer</text>
-
-  <!-- micro-ROS Agent -->
-  <rect x="80" y="465" width="130" height="70" rx="6" fill="url(#baseGrad)"/>
-  <text x="145" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">micro-ROS Agent</text>
-  <text x="145" y="508" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">UDP:8888</text>
-  <text x="145" y="522" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">STM32 Bridge</text>
-
-  <!-- odom2tf -->
-  <rect x="240" y="465" width="130" height="70" rx="6" fill="url(#baseGrad)"/>
-  <text x="305" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">odom2tf</text>
-  <text x="305" y="508" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">odom → TF</text>
-  <text x="305" y="522" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">odom→base_link</text>
-
-  <!-- URDF2TF -->
-  <rect x="400" y="465" width="130" height="70" rx="6" fill="url(#baseGrad)"/>
-  <text x="465" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">URDF2TF</text>
-  <text x="465" y="508" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">robot_state_pub</text>
-  <text x="465" y="522" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">URDF → TF</text>
-
-  <!-- Camera Driver -->
-  <rect x="560" y="465" width="130" height="70" rx="6" fill="url(#baseGrad)"/>
-  <text x="625" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">fishbot_camera</text>
-  <text x="625" y="508" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">HTTP→ROS Image</text>
-  <text x="625" y="522" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">/fishbot_camera_raw</text>
-
-  <!-- YDLidar Driver -->
-  <rect x="720" y="465" width="100" height="70" rx="6" fill="url(#baseGrad)"/>
-  <text x="770" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#fff">ydlidar_ros2</text>
-  <text x="770" y="508" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">Laser Driver</text>
-  <text x="770" y="522" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">/scan</text>
-
-  <!-- ============ Layer 3: SLAM + Nav2 ============ -->
-  <rect x="50" y="280" width="800" height="130" rx="8" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
-  <text x="450" y="302" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#1e8449">SLAM &amp; Navigation Layer</text>
-
-  <!-- Cartographer -->
-  <rect x="80" y="315" width="170" height="80" rx="6" fill="url(#slamGrad)"/>
-  <text x="165" y="340" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Cartographer SLAM</text>
-  <text x="165" y="358" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">scan + odom → /map</text>
-  <text x="165" y="372" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">map_frame: map</text>
-
-  <!-- Nav2 -->
-  <rect x="290" y="315" width="200" height="80" rx="6" fill="url(#navGrad)"/>
-  <text x="390" y="340" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#fff">Navigation2 (Nav2)</text>
-  <text x="390" y="358" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">AMCL + BT Navigator</text>
-  <text x="390" y="372" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">DWB Controller + Costmap</text>
-
-  <!-- Nav2 Simple Commander -->
-  <rect x="530" y="315" width="170" height="80" rx="6" fill="#5dade2" stroke="#2980b9" stroke-width="2"/>
-  <text x="615" y="340" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">Nav2 Simple</text>
-  <text x="615" y="356" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">Commander API</text>
-  <text x="615" y="372" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ddd">goToPose / followWaypoints</text>
-
-  <!-- ============ Layer 4: Application (top) ============ -->
-  <rect x="50" y="110" width="800" height="150" rx="8" fill="#fdf2f8" stroke="#e74c3c" stroke-width="2"/>
-  <text x="450" y="132" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#c0392b">Application Layer</text>
-
-  <!-- Patrol Node -->
-  <rect x="80" y="148" width="220" height="100" rx="6" fill="url(#patrolGrad)"/>
-  <text x="190" y="173" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#fff">PatrolNode (autopartol_robot)</text>
-  <text x="190" y="193" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">Waypoint Navigation</text>
-  <text x="190" y="207" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">Area Recognition (TF)</text>
-  <text x="190" y="221" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">4-Direction Photo Capture</text>
-  <text x="190" y="235" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">Speech Trigger</text>
-
-  <!-- Speaker Node -->
-  <rect x="330" y="148" width="180" height="100" rx="6" fill="url(#patrolGrad)"/>
-  <text x="420" y="173" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#fff">Speaker Node</text>
-  <text x="420" y="193" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">edge-tts (XiaoxiaoNeural)</text>
-  <text x="420" y="207" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">Service: /speech_text</text>
-  <text x="420" y="221" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">SpeachText.srv</text>
-  <text x="420" y="235" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">mpv audio playback</text>
-
-  <!-- fishbot_application -->
-  <rect x="540" y="148" width="200" height="100" rx="6" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
-  <text x="640" y="173" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">fishbot_application</text>
-  <text x="640" y="193" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d5e8f3">init_robot_pose</text>
-  <text x="640" y="207" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d5e8f3">nav_to_pose (single goal)</text>
-  <text x="640" y="221" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d5e8f3">waypoint_follower (multi)</text>
-  <text x="640" y="235" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d5e8f3">get_robot_pose (TF)</text>
-
-  <!-- TF Tree indicator -->
-  <rect x="770" y="148" width="70" height="100" rx="6" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
-  <text x="805" y="175" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#fff">TF Tree</text>
-  <text x="805" y="193" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#ecf0f1">map</text>
-  <text x="805" y="207" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#ecf0f1">→odom</text>
-  <text x="805" y="221" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#ecf0f1">→base_foot</text>
-  <text x="805" y="235" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#ecf0f1">→base_link</text>
-
-  <!-- Arrows: App → Nav2 Commander -->
-  <line x1="300" y1="248" x2="615" y2="395" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
-  <line x1="420" y1="248" x2="450" y2="395" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
-
-  <!-- Arrows: Nav2 → Bringup -->
-  <line x1="390" y1="395" x2="305" y2="465" stroke="#357abd" stroke-width="2" marker-end="url(#arrowBlue)"/>
-  <text x="320" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#357abd">odom TF</text>
-
-  <line x1="250" y1="395" x2="770" y2="465" stroke="#27ae60" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
-  <text x="560" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#27ae60">/scan, /map</text>
-
-  <!-- Arrows: Bringup → Hardware -->
-  <line x1="145" y1="535" x2="450" y2="602" stroke="#8e44ad" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="625" y1="535" x2="290" y2="602" stroke="#8e44ad" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow)"/>
-  <line x1="770" y1="535" x2="140" y2="602" stroke="#8e44ad" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow)"/>
-
-  <!-- Arrow: Patrol → Speaker (service call) -->
-  <line x1="300" y1="198" x2="330" y2="198" stroke="#c0392b" stroke-width="3" marker-end="url(#arrow)"/>
-  <text x="315" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="8" fill="#c0392b">srv</text>
-
-  <!-- Legend -->
-  <rect x="50" y="62" width="800" height="40" rx="6" fill="#fff" stroke="#ccc" stroke-width="1"/>
-  <circle cx="80" cy="82" r="6" fill="url(#patrolGrad)"/>
-  <text x="92" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555">Application</text>
-  <circle cx="190" cy="82" r="6" fill="url(#slamGrad)"/>
-  <text x="202" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555">SLAM/Nav2</text>
-  <circle cx="290" cy="82" r="6" fill="url(#baseGrad)"/>
-  <text x="302" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555">Driver/Bringup</text>
-  <circle cx="410" cy="82" r="6" fill="url(#hwGrad)"/>
-  <text x="422" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555">Hardware</text>
-  <line x1="500" y1="82" x2="540" y2="82" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="548" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555">Data Flow</text>
-  <line x1="630" y1="82" x2="670" y2="82" stroke="#555" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
-  <text x="678" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555">Topic/TF</text>
 </svg>
