@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="860" viewBox="0 0 900 860">
+  <defs>
+    <linearGradient id="startGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2ecc71"/>
+      <stop offset="100%" stop-color="#27ae60"/>
+    </linearGradient>
+    <linearGradient id="navGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3498db"/>
+      <stop offset="100%" stop-color="#2980b9"/>
+    </linearGradient>
+    <linearGradient id="actionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e74c3c"/>
+      <stop offset="100%" stop-color="#c0392b"/>
+    </linearGradient>
+    <linearGradient id="detectGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f39c12"/>
+      <stop offset="100%" stop-color="#d68910"/>
+    </linearGradient>
+    <linearGradient id="endGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#95a5a6"/>
+      <stop offset="100%" stop-color="#7f8c8d"/>
+    </linearGradient>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+    <marker id="flowArrow" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#555"/>
+    </marker>
+    <marker id="flowArrowRed" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="860" fill="url(#bgGrad2)" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#2c3e50">Patrol Robot Workflow - Navigation &amp; Capture Flow</text>
+
+  <!-- Step 1: Launch -->
+  <rect x="300" y="60" width="300" height="55" rx="8" fill="url(#startGrad)"/>
+  <text x="450" y="85" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#fff" font-weight="600">1. Launch: ros2 launch autopartol_robot autopatol.launch.py</text>
+  <text x="450" y="103" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d7f4e0">Starts: PatrolNode + Speaker + Camera</text>
+
+  <line x1="450" y1="115" x2="450" y2="140" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 2: Init Pose -->
+  <rect x="300" y="140" width="300" height="70" rx="8" fill="url(#navGrad2)"/>
+  <text x="450" y="165" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#fff" font-weight="600">2. Initialize Robot Pose</text>
+  <text x="450" y="183" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d4e6f1">setInitialPose(x=0, y=0, yaw=0)</text>
+  <text x="450" y="198" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d4e6f1">waitUntilNav2Active()</text>
+
+  <line x1="450" y1="210" x2="450" y2="235" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 3: Speech init -->
+  <rect x="300" y="235" width="300" height="55" rx="8" fill="url(#actionGrad)"/>
+  <text x="450" y="258" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff" font-weight="600">3. Speech: "Position Initialized"</text>
+  <text x="450" y="276" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fde">Call /speech_text service → edge-tts → mpv</text>
+
+  <line x1="450" y1="290" x2="450" y2="315" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 4: Loop Start -->
+  <rect x="300" y="315" width="300" height="45" rx="8" fill="#fff" stroke="#555" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="450" y="342" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#555" font-weight="600">4. Main Loop: for each target point</text>
+
+  <line x1="450" y1="360" x2="450" y2="385" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 5: Get target -->
+  <rect x="250" y="385" width="400" height="55" rx="8" fill="url(#navGrad2)"/>
+  <text x="450" y="408" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff" font-weight="600">5. Get Target Point (x, y, yaw)</text>
+  <text x="450" y="426" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d4e6f1">From partol_config.yaml → get_pose_by_xyyaw()</text>
+
+  <line x1="450" y1="440" x2="450" y2="465" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 6: Navigate -->
+  <rect x="250" y="465" width="400" height="65" rx="8" fill="url(#navGrad2)"/>
+  <text x="450" y="490" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff" font-weight="600">6. Navigate to Target</text>
+  <text x="450" y="508" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d4e6f1">nav_to_pose() → goToPose() → wait Nav2</text>
+  <text x="450" y="522" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d4e6f1">AMCL localization + DWB path planning</text>
+
+  <line x1="450" y1="530" x2="450" y2="555" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 7: Area Detection -->
+  <rect x="250" y="555" width="400" height="70" rx="8" fill="url(#detectGrad)"/>
+  <text x="450" y="580" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff" font-weight="600">7. Area Recognition</text>
+  <text x="450" y="598" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fef9e7">get_current_pose() via TF: map → base_footprint</text>
+  <text x="450" y="612" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#fef9e7">Match (x,y) against area_bounds → "Living Room"</text>
+
+  <line x1="450" y1="625" x2="450" y2="650" stroke="#555" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- Step 8: Speech + Photo -->
+  <rect x="150" y="650" width="600" height="100" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+  <text x="450" y="672" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#c0392b" font-weight="600">8. Rotate &amp; Capture (4 directions)</text>
+
+  <!-- 4 directions -->
+  <rect x="170" y="682" width="120" height="55" rx="6" fill="url(#actionGrad)"/>
+  <text x="230" y="702" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">0 deg (Front)</text>
+  <text x="230" y="718" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#fde">nav→speak→photo</text>
+
+  <rect x="300" y="682" width="120" height="55" rx="6" fill="url(#actionGrad)"/>
+  <text x="360" y="702" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">90 deg (Right)</text>
+  <text x="360" y="718" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#fde">nav→speak→photo</text>
+
+  <rect x="430" y="682" width="120" height="55" rx="6" fill="url(#actionGrad)"/>
+  <text x="490" y="702" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">180 deg (Back)</text>
+  <text x="490" y="718" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#fde">nav→speak→photo</text>
+
+  <rect x="560" y="682" width="120" height="55" rx="6" fill="url(#actionGrad)"/>
+  <text x="620" y="702" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#fff">270 deg (Left)</text>
+  <text x="620" y="718" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#fde">nav→speak→photo</text>
+
+  <!-- Arrow from step 8 back to step 4 (loop) -->
+  <path d="M 750 710 Q 830 710 830 337 Q 830 337 700 337" stroke="#555" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#flowArrow)"/>
+  <text x="840" y="525" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#555" transform="rotate(90, 840, 525)">Next Waypoint</text>
+
+  <!-- Step 9: Complete -->
+  <rect x="300" y="775" width="300" height="55" rx="8" fill="url(#endGrad)"/>
+  <text x="450" y="800" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff" font-weight="600">9. All waypoints done → Loop back</text>
+  <text x="450" y="818" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#ecf0f1">Photos saved to patrol_photos/ directory</text>
+
+  <!-- Side annotations -->
+  <!-- TF annotation -->
+  <rect x="670" y="570" width="180" height="40" rx="6" fill="#eaf2f8" stroke="#3498db" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="760" y="587" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#2980b9" font-weight="600">TF: map → odom → base_footprint</text>
+  <text x="760" y="601" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#2980b9">nav2_amcl + odom2tf + URDF</text>
+
+  <!-- Speech service annotation -->
+  <rect x="670" y="250" width="180" height="35" rx="6" fill="#fdf2f8" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="760" y="266" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#c0392b" font-weight="600">Service: /speech_text</text>
+  <text x="760" y="279" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#c0392b">autopartol_interfaces/SpeachText</text>
+
+  <!-- Camera annotation -->
+  <rect x="670" y="470" width="180" height="50" rx="6" fill="#fef9e7" stroke="#f39c12" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="760" y="487" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#d68910" font-weight="600">Camera: /fishbot_camera_raw</text>
+  <text x="760" y="501" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#d68910">ESP32-CAM → HTTP stream</text>
+  <text x="760" y="514" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#d68910">→ cv_bridge → cv2.imwrite</text>
+
+  <!-- Config annotation -->
+  <rect x="50" y="385" width="180" height="55" rx="6" fill="#eaf2f8" stroke="#3498db" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="140" y="405" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#2980b9" font-weight="600">partol_config.yaml</text>
+  <text x="140" y="420" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#2980b9">target_points: 5 waypoints</text>
+  <text x="140" y="433" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#2980b9">area_names: 4 zones</text>
+</svg>

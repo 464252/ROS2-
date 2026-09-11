@@ -1,0 +1,24 @@
+patrol_node:
+  ros__parameters:
+    initial_point: [0.0, 0.0, 0.0]
+    target_points: [
+      0.03,0.26,0.0,          # 原点中心
+      2.35,1.53,0.0,          # 客厅1中心
+      2.86,-1.16,0.0,         # 客厅2中心
+      2.15,-1.02,0.0,         # 客厅3中心
+      0.03,0.26,0.0,          # 返回原点
+      ]
+    use_sim_time: false
+    # 真机相机配置
+    enable_camera: true            # 是否启用相机拍照功能
+    camera_topic: /fishbot_camera_raw  # 相机图像话题名称
+    photo_save_dir: patrol_photos  # 照片保存目录（相对路径或绝对路径）
+    # 区域定义：area_names 和 area_bounds 一一对应
+    # 每个 bounds 是 4 个数：x_min, x_max, y_min, y_max
+    area_names: ["原点", "客厅1", "客厅2", "客厅3"]
+    area_bounds: [
+      -0.71, 0.76, -0.1, 0.63,        # 原点
+      0.9, 3.8, -0.1, 3.16,           # 客厅1
+      1.79, 3.92, -2.25, -0.07,       # 客厅2
+      1.9, 2.4, -1.38, -0.65,         # 客厅3
+    ]
